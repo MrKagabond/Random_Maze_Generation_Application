@@ -9,10 +9,9 @@ class MazeGenerator:
         self.tiles = tiles
 
         # colours
-        self.blue = [0, 150, 200]
         self.red = [250, 25, 3]
-        self.yellow = [230, 235, 16]
         self.green = [0, 227, 5]
+        self.blue = [0, 150, 200]
 
         # each tiles width and height
         self.tw = int(self.bounds.w / self.tiles)

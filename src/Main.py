@@ -10,16 +10,12 @@ TILES = 25
 
 
 def maze_init():
-    padding_w = WIDTH - (WIDTH * 0.90)
-    padding_h = HEIGHT - (HEIGHT * 0.90)
+    padding_w = WIDTH - (WIDTH * 0.95)
+    padding_h = HEIGHT - (HEIGHT * 0.95)
 
     # The tile that will contain the maze
     maze_bounds = Tile(int(0 + padding_w), int(0 + padding_h), int(WIDTH - (2 * padding_w)),
                        int(HEIGHT - (2 * padding_h)), screen)
-
-    # TODO fix this bug! Incorrectly draws the bounds
-    # Draws the bounds
-    # maze_bounds.draw()
 
     maze_gen = MazeGenerator(maze_bounds, screen, TILES)
     maze_gen.gen_maze()
