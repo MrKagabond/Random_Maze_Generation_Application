@@ -13,7 +13,7 @@ Installation
     
     py -m pip install -U pygame -- <<ENTER USER HERE>>
 
-  Alternatively, you can clone the repo directly from the Git Website and proceed to download and run the code that way. 
+  Alternatively, you can clone the repo directly from the GitHub and proceed to download and run the code that way. 
   
 
 Product Use  
