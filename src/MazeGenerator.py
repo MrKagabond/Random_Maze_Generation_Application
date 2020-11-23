@@ -9,9 +9,9 @@ class MazeGenerator:
         self.tiles = tiles
 
         # colours
-        self.red = [250, 25, 3]
-        self.green = [0, 227, 5]
-        self.blue = [0, 150, 200]
+        self.solution_colour = [40, 190, 240]
+        self.base_colour = [0, 227, 5]
+        self.built_colour = [0, 150, 200]
 
         # each tiles width and height
         self.tw = int(self.bounds.w / self.tiles)
@@ -22,8 +22,6 @@ class MazeGenerator:
         self.starting_pos = ()
         self.maze = self._build_maze()
         self.solution = {}
-
-        # TODO display solution path
 
     def _build_maze(self) -> dict:
         base_maze = {}
@@ -51,7 +49,7 @@ class MazeGenerator:
         i = 0
         j = 0
 
-        # TODO Randomize
+        # TODO Randomize position
         self.starting_pos = (0, 0)
 
         maze = self._build_maze()
@@ -117,37 +115,37 @@ class MazeGenerator:
             else:
                 i, j = stack.pop()
                 self._draw_tile(i, j)
-                time.sleep(0.075)
-                self._draw_tile(i, j, self.blue)
+                time.sleep(0.03)
+                self._draw_tile(i, j, self.built_colour)
 
     def path_back(self, i, j):
         self._solution_cell(i, j)
         while (i, j) != (self.starting_pos[0], self.starting_pos[1]):
-            i, j = self.solution[i, j]  #
+            i, j = self.solution[i, j]
             self._solution_cell(i, j)
             time.sleep(.05)
 
     def _build_up(self, i, j):
         temp = self.maze[(i, j)]
-        temp.draw(temp.x + 1, temp.y - temp.h + 1, temp.w - 1, (2 * temp.h) - 1, self.blue)
+        temp.draw(temp.x + 1, temp.y - temp.h + 1, temp.w - 1, (2 * temp.h) - 1, self.built_colour)
 
     def _build_down(self, i, j):
         temp = self.maze[(i, j)]
-        temp.draw(temp.x + 1, temp.y + 1, temp.w - 1, (2 * temp.h) - 1, self.blue)
+        temp.draw(temp.x + 1, temp.y + 1, temp.w - 1, (2 * temp.h) - 1, self.built_colour)
 
     def _build_left(self, i, j):
         temp = self.maze[(i, j)]
-        temp.draw(temp.x - temp.w + 1, temp.y + 1, (2 * temp.w) - 1, temp.h - 1, self.blue)
+        temp.draw(temp.x - temp.w + 1, temp.y + 1, (2 * temp.w) - 1, temp.h - 1, self.built_colour)
 
     def _build_right(self, i, j):
         temp = self.maze[(i, j)]
-        temp.draw(temp.x + 1, temp.y + 1, (2 * temp.w) - 1, temp.h - 1, self.blue)
+        temp.draw(temp.x + 1, temp.y + 1, (2 * temp.w) - 1, temp.h - 1, self.built_colour)
 
     def _draw_tile(self, *args):
         l = len(args)
         i = 0
         j = 0
-        c = self.green
+        c = self.base_colour
         # TODO - Condense error check
         if l >= 2:
             if isinstance(args[0], int) and isinstance(args[1], int):
@@ -173,4 +171,6 @@ class MazeGenerator:
 
     def _solution_cell(self, i: int, j: int):
         temp = self.maze[(i, j)]
-        temp.draw(temp.x + 8, temp.y + 8, temp.w / 2, temp.h / 2, self.red)
+        w = int(temp.w / 2)
+        h = int(temp.h / 2)
+        temp.draw(int(temp.x + w / 2), int(temp.y + h / 2), w, h, self.solution_colour)
