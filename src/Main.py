@@ -30,8 +30,8 @@ if __name__ == "__main__":
 
     # User Input
     print(
-        "\n\n\n\n--- Random Maze Generation Application ---\nPlease consult the READ.ME document for operation "
-        "details...")
+        "--- Random Maze Generation Application ---\nPlease consult the README document for details on how to run "
+        "this application...")
     while True:
         t = input("\n\tENTER NUMBER OF TILES <INT>: ")
         if t.isdigit():

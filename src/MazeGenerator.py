@@ -49,7 +49,6 @@ class MazeGenerator:
         i = 0
         j = 0
 
-        # TODO Randomize position
         self.starting_pos = (0, 0)
 
         maze = self._build_maze()
@@ -146,7 +145,6 @@ class MazeGenerator:
         i = 0
         j = 0
         c = self.base_colour
-        # TODO - Condense error check
         if l >= 2:
             if isinstance(args[0], int) and isinstance(args[1], int):
                 i = args[0]
